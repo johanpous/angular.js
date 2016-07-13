@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body style="margin: 0px;">
+
+<div ng-mousemove="changeName(event)" style="height: 200px; width: 200px; border: 1px solid black;" ng-app="myApp" ng-controller="myCtrl">
+    
+    <h1 >{{firstname}}</h1>
+    <div ng-model="X" ng-show="5<3">Que te pasas de la X</div>
+    <div ng-model="Y" ng-show="Y>200">Que te pasas de la Y</div>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstname = "John";
+    $scope.changeName = function() {
+        if(event.clientX > 200){
+            $scope.X = event.clientX;
+        }
+        if(event.clientY > 200){
+            $scope.Y = event.clientY;
+        }
+        $scope.firstname = event.clientX + " - " + event.clientY ;
+    }
+});
+</script>
+
+<p>Click on the header to run the "changeName" function.</p>
+
+<p>This example demonstrates how to use the controller to change model data.</p>
+
+</body>
+</html>
+
