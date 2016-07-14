@@ -5,28 +5,31 @@
 <div ng-app="myApp" ng-controller="myCtrl">
 
 <p>The hexadecimal value of 255 is:</p>
-<input type="number" ng-model="decimal" ng-change="myHex()" >
+<input type="number" ng-model="decimal" ng-change="myHex()" ng-init="hex=0; octal=0;">
 <h1>{{decimal}}</h1>
-<h2>Conversió hexadecimal: {{hex}}</h2>
+<h2>Conversió hexadecimal: {{hex | myFormat}}</h2>
+<h2>Conversió octal: {{octal | myFormat}}</h2>
+<h2>Conversió binaria: {{binari}}</h2>
 
 </div>
 
 <p>A custom service whith a method that converts a given number into a hexadecimal number.</p>
 
-<script>
-var app = angular.module('myApp', []);
 
-app.service('hexafy', function() {
-    this.myFunc = function (x) {
-        return x.toString(16);
-    }
-});
-app.controller('myCtrl', function($scope, hexafy) {
-	$scope.myHex = function() {
-	  $scope.hex = hexafy.myFunc(parseInt($scope.decimal));
-	};
-});
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope, hexafy) {
+		$scope.myHex = function() {
+		  $scope.hex = hexafy.myFunc(parseInt($scope.decimal));
+		  $scope.octal = hexafy.myFuncOctal(parseInt($scope.decimal));
+		  $scope.binari = hexafy.myFuncBinary(parseInt($scope.decimal));
+		};
+	});
+
+
 </script>
+<script src="hexafyService.js"></script>
+<script src="myFormatFilter.js"></script>
 
 </body>
 </html>
