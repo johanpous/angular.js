@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<input type="number" step="1000" ng-model="intervalo" ng-change="setIntervalo();">
+<p>The time is:</p>
+
+<h1>{{theTime}}</h1>
+<h1>{{intervalo}}</h1>
+
+</div>
+
+<p>The $interval service runs a function every specified millisecond.</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $interval) {
+	//$scope.intervalo = 1;
+	$scope.theTime = new Date().toLocaleTimeString();
+	$scope.setIntervalo = function(){
+	  console.log($scope.intervalo);
+	  $interval.cancel();
+	  $interval(function () {
+	 	 $scope.theTime = new Date().toLocaleTimeString();
+		 }, parseInt(4000));
+	};
+
+	});
+</script>
+
+</body>
+</html>

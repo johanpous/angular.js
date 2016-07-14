@@ -6,23 +6,31 @@
 <div ng-mousemove="changeName(event)" style="height: 200px; width: 200px; border: 1px solid black;" ng-app="myApp" ng-controller="myCtrl">
     
     <h1 >{{firstname}}</h1>
-    <div ng-model="X" ng-show="5<3">Que te pasas de la X</div>
+     <div ng-model="contador" ng-hide="contador>10;" style="font-size: 4em;">{{contador}}</div>
+    <div ng-show="contador==10;">GAME OVER</div>
+   
+    <div ng-model="X" ng-show="X>200">Que te pasas de la X</div>
     <div ng-model="Y" ng-show="Y>200">Que te pasas de la Y</div>
 </div>
 
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
+    $scope.contador = 0;
     $scope.firstname = "John";
+
     $scope.changeName = function() {
         if(event.clientX > 200){
             $scope.X = event.clientX;
+            $scope.contador = $scope.contador + 1;
         }
         if(event.clientY > 200){
             $scope.Y = event.clientY;
+            $scope.contador++;
         }
         $scope.firstname = event.clientX + " - " + event.clientY ;
     }
+    
 });
 </script>
 
