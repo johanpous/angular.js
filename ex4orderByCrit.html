@@ -2,6 +2,7 @@
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <body class="w3-container">
 
 <p>Click the table headers to change the sorting order:</p>
@@ -10,8 +11,9 @@
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" style="width: 50%; margin: auto;">
 <tr>
-<th ng-click="reverse = reverse ? false : true; sortField = 'name'">Name</th>
-<th ng-click="reverse = reverse ? false : true; sortField = 'country'">Country</th>
+{{ordre}}{{reverse}}
+<th ng-click="reverse = reverse ? false : true; sortField = 'name'; order();">Name<i class="fa fa-sort-alpha-{{ordre}}"></i></th>
+<th ng-click="reverse = reverse ? false : true; sortField = 'country'; order()">Country<i class="fa fa-sort-alpha-{{ordre}}"></i</th>
 </tr>
 <tr ng-repeat="x in names | orderBy:sortField:reverse">
 <td>{{x.name}}</td>
@@ -36,7 +38,17 @@ angular.module('myApp', []).controller('namesCtrl', function($scope) {
         ];
 
     $scope.sortField = "name";
-    $scope.reverse  = false;
+    
+    $scope.order = function(){
+        if($scope.reverse == false){
+            $scope.ordre = 'asc';
+        }
+        else{
+            $scope.ordre = 'desc';
+        } 
+    }
+    
+
 });
 </script>
 
