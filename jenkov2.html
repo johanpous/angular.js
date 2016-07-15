@@ -15,16 +15,30 @@
       {{myData.showIt}}
       <span ng-show="myData.showIt">A</span>
       <span ng-hide="myData.showIt">B</span>
+      <hr>
+      {{myData.switch}}
+      <input type="number" ng-model="myData.switch"></input>
+      <div ng-switch on="myData.switch">
+        <div ng-switch-when="1">Shown when switch is 1</div>
+        <div ng-switch-when="2"><b>Shown when switch is 2</b></div>
+        <div ng-switch-default>Shown when switch is anything else than 1 and 2</div>
+      </div>
+      <div ng-if="myData.showIt">ng-if Show it</div>
+
+      <hr>
+      <div ng-include="myData.showIt &&
+                        'fragment-1.html' ||
+                        'fragment-2.html'"></div>
+      <ul>
+   		<li ng-repeat="theItem in myData.items">
+   			{{theItem.text}}
+   		</li>
+	  </ul>
   	</div>
   	  <span ng-show="myData.showIt">A</span>
       <span ng-hide="myData.showIt">B</span>
       {{myData.showIt}}
-      <hr>
-      <div ng-switch on="myData.switch">
-        <div ng-switch-when="1">Shown when switch is 1</div>
-        <div ng-switch-when="2">Shown when switch is 2</div>
-        <div ng-switch-default>Shown when switch is anything else than 1 and 2</div>
-    </div>
+
 </div>
 
   <script>
@@ -32,8 +46,9 @@
     .controller("MyController", function($scope) {
       $scope.myData = {};
       $scope.myData.edat = 33;
-      $scope.myData.showIt = true;
+      $scope.myData.showIt = false;
       $scope.myData.switch = 3;
+      $scope.myData.items = [ {text : 1}, {text : 2}, {text : 3}, {text : 4}, {text : 5} ];
       $scope.myData.textf = function() { return "<b>A text from a function</b>"; };
     });
   </script>
