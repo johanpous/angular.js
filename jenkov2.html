@@ -30,15 +30,40 @@
                         'fragment-1.html' ||
                         'fragment-2.html'"></div>
       <ul>
-   		<li ng-repeat="theItem in myData.items">
-   			{{theItem.text}}
-   		</li>
+   		<span ng-repeat="theItem in myData.items">
+   			<li ng-if="theItem.text%2==1">
+   				{{$index}}-{{theItem.text}}
+   				<span ng-if="$middle">medio</span>
+   				<span ng-if="$first">primero</span>
+   				<span ng-if="$last">ultimo</span>
+   			</li>
+   		</span>
 	  </ul>
+	  <hr>
+
+	  <div ng-repeat="(name, value) in myData.myObject">
+	    <div>{{name}}</div>
+	    <div>{{value}}</div>
+	  </div>
+
+	  <ol>
+	    <li ng-repeat-start="(name, value) in myData.myObject">{{name}}</li>
+	    <li ng-repeat-end>{{value}}</li>
+	  </ol>
+
+	  <div ng-repeat="item in myData.items | filter: itemFilter">
+	  	{{item.text}}---<b>{{item.nota}}</b>
+	  </div>
+	  <span>Fecha: {{myData.theDate | date: 'dd-MMMM-yyyy'}}</span>
+	  <div>{{myData.theNumber | number: 2}}</div>
+	  <div>{{myData.theText | limitTo: 3}}</div>
   	</div>
+
+
+  	<!--Fora del controller -->
   	  <span ng-show="myData.showIt">A</span>
       <span ng-hide="myData.showIt">B</span>
       {{myData.showIt}}
-
 </div>
 
   <script>
@@ -48,8 +73,17 @@
       $scope.myData.edat = 33;
       $scope.myData.showIt = false;
       $scope.myData.switch = 3;
-      $scope.myData.items = [ {text : 1}, {text : 2}, {text : 3}, {text : 4}, {text : 5} ];
+      $scope.myData.items = [ {text : 1, nota : 7}, {text : 2, nota : 7}, {text : 3, nota : 7}, {text : 4, nota : 7}, {text : 5, nota : 7} ];
       $scope.myData.textf = function() { return "<b>A text from a function</b>"; };
+      $scope.myData.myObject = { var1 : "val1", var2 : "val2", var3 : "val3"};
+
+	   $scope.itemFilter = function(item) {
+	    if(item.text == 2) return false;
+	      return true;
+	   }
+	  $scope.myData.theDate = new Date();
+	  $scope.myData.theNumber = 2.219;
+      $scope.myData.theText = [1, 2, 3, 4, 5];
     });
   </script>
 </body>
