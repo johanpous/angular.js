@@ -11,8 +11,8 @@
 
 <div ng-controller="HelloController" >
 
-    <h2>Hello {{helloTo.title}} !</h2>
-    <h3>Hello {{helloTo.subtitle}}</h3>
+    <h2>Hello {{helloTo.title | myFormat}} !</h2>
+    <h3>Hello {{helloTo.subtitle | myFormat | myReverse}}</h3>
 
 </div>
 
@@ -25,6 +25,36 @@
         $scope.helloTo.title = "World, AngularJS";
         $scope.helloTo.subtitle = "Subtitle World, AngularJS";
     });
+
+    app.filter('myFormat', function() {
+	    return function(x) {
+	        var i, c, txt = "";
+	        for (i = 0; i < x.length; i++) {
+	            c = x[i];
+	            if (i % 2 == 0) {
+	                c = c.toUpperCase();
+	            }
+	            txt += c;
+	        }
+	        return txt;
+	    };
+	});
+
+	app.filter('myReverse', function(){
+		return function(s) {
+			  var o = '';
+			  for (var i = s.length - 1; i >= 0; i--)
+			  	o += s[i];
+  			  return o;
+		};
+	});
+
+	/*app.filter('redFilter', function(){
+		return function(s) {
+			  s = "<b>" + s + "</b>";
+  			  return s;
+		};
+	});*/
 
 </script>
 

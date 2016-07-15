@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myapp">
+	<div ng-controller="MyController" >
+      <span>{{myData.textf()}}</span><br>
+      <span>Edat: {{myData.edat}}</span>
+      <div ng-bind="myData.edat"></div>
+      <span ng-bind-html-unsafe="myData.textf()">ds</span>
+      <br/>
+      {{myData.showIt}}
+      <span ng-show="myData.showIt">A</span>
+      <span ng-hide="myData.showIt">B</span>
+  	</div>
+  	  <span ng-show="myData.showIt">A</span>
+      <span ng-hide="myData.showIt">B</span>
+      {{myData.showIt}}
+      <hr>
+      <div ng-switch on="myData.switch">
+        <div ng-switch-when="1">Shown when switch is 1</div>
+        <div ng-switch-when="2">Shown when switch is 2</div>
+        <div ng-switch-default>Shown when switch is anything else than 1 and 2</div>
+    </div>
+</div>
+
+  <script>
+    angular.module("myapp", [])
+    .controller("MyController", function($scope) {
+      $scope.myData = {};
+      $scope.myData.edat = 33;
+      $scope.myData.showIt = true;
+      $scope.myData.switch = 3;
+      $scope.myData.textf = function() { return "<b>A text from a function</b>"; };
+    });
+  </script>
+</body>
+</html>
