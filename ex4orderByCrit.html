@@ -11,9 +11,9 @@
 
 <table class="w3-table w3-bordered w3-striped w3-border w3-hoverable" style="width: 50%; margin: auto;">
 <tr>
-{{ordre}}{{reverse}}
+{{ordre}}-{{reverse}}
 <th ng-click="reverse = reverse ? false : true; sortField = 'name'; order();">Name<i class="fa fa-sort-alpha-{{ordre}}"></i></th>
-<th ng-click="reverse = reverse ? false : true; sortField = 'country'; order()">Country<i class="fa fa-sort-alpha-{{ordre}}"></i</th>
+<th ng-click="reverse = reverse ? false : true; sortField = 'country'; order()">Country<i class="fa fa-sort-alpha-{{ordre}}"></i></th>
 </tr>
 <tr ng-repeat="x in names | orderBy:sortField:reverse">
 <td>{{x.name}}</td>

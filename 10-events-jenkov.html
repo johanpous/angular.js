@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <style type="text/css">
+		html {
+		  height: 100%;
+		}
+		body {
+		  min-height: 100%;
+		}
+    </style>
+</head>
+
+<body class="w3-container" ng-click="myData.doClick($event)" ng-mousemove="myData.doMove($event)" ng-app="myapp" ng-controller="MyController">
+
+	<div>
+	    <div>Click here</div>
+	</div>
+
+	<div class="w3-jumbo w3-card-12 w3-green w3-hover-shadow w3-center">
+	  <p>X: {{X}}</p>
+	</div>
+	<div class="w3-jumbo w3-card-12 w3-green w3-hover-shadow w3-center">
+	  <p>Y: {{Y}}</p>
+	</div>
+
+	<script>
+	    angular.module("myapp", [])
+	            .controller("MyController", function($scope) {
+	                $scope.myData = {};
+	                $scope.myData.doClick = function(event) {
+	                    alert("clicked: " + event.clientX + ", " + event.clientY);
+	                };
+	                $scope.myData.doMove = function(event) {
+	                    $scope.X = event.clientX;
+	                    $scope.Y = event.clientY;
+	                }
+	            } );
+	</script> 
+
+</body>
+</html>

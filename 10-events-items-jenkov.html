@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <style type="text/css">
+		html {
+		  height: 100%;
+		}
+		body {
+		  min-height: 100%;
+		}
+    </style>
+</head>
+
+<body ng-app="myapp" >
+
+<div ng-controller="MyController" >
+    <ol>
+        <li ng-repeat="item in myData.items"
+               ng-click="myData.doClick(item, $event)">
+               <div ng-if="item.autor == 'Pepe'">
+               		<b>{{item.autor}}</b>
+				</div>
+				<div ng-if="item.autor != 'Pepe'">
+					{{item.autor}}
+				</div>
+        </li>
+    </ol>
+</div>
+
+<script>
+    angular.module("myapp", [])
+            .controller("MyController", function($scope) {
+                $scope.myData = {};
+                $scope.myData.items = [{ v: "1", autor: "David"}, { v: "2", autor: "Jose"}, { v : "3", autor: "Pepe"} ];
+
+                $scope.myData.doClick = function(item, event) {
+                    alert("clicked: " + item.v + " @ " + event.clientX + ": " + event.clientY);
+                }
+            } );
+</script>
+
+</body>
+</html>

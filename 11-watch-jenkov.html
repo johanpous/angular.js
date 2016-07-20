@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="MyController" ng-init="myData.myVar = 2">
+	<input type="number" ng-model="myData.myVar" value="{{myData.myVar}}" ></input>
+	Watcher: {{myData.myVar}}
+	<div id="myVariable">myVariable: </div>
+	<script>
+	    angular.module("myapp", [])
+	            .controller("MyController", function($scope) {
+	                //$scope.myData.myVar = 3;
+
+
+	             $scope.$watch(function(scope) { return scope.myData.myVar },
+	              function(newValue, oldValue) {
+	                  document.getElementById("myVariable").innerHTML =
+	                      "" + newValue-oldValue + "";
+	              }
+	             );
+	            } );
+	</script> 
+</body>
+</html>
