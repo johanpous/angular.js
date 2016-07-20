@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+<div ng-controller="MyController" >
+    <form>
+        <select ng-model="myForm.car"
+                ng-options="obj.url as obj.display for obj in myForm.options">
+        </select>
+    </form>
+
+    <div>
+        {{myForm.car}}
+    </div>
+</div>
+
+<script>
+    angular.module("myapp", [])
+        .controller("MyController", function($scope) {
+            $scope.myForm = {};
+            $scope.myForm.car  = "nissan";
+
+            $scope.myForm.options = [
+{
+"display": "HTML Tutorial",
+"url": "http://www.w3schools.com/html/default.asp"
+},
+{
+"display": "CSS Tutorial",
+"url": "http://www.w3schools.com/css/default.asp"
+},
+{
+"display": "JavaScript Tutorial",
+"url": "http://www.w3schools.com/js/default.asp"
+},
+{
+"display": "jQuery Tutorial",
+"url": "http://www.w3schools.com/jquery/default.asp"
+},
+{
+"display": "JSON Tutorial",
+"url": "http://www.w3schools.com/json/default.asp"
+},
+{
+"display": "AJAX Tutorial",
+"url": "http://www.w3schools.com/ajax/default.asp"
+},
+{
+"display": "SQL Tutorial",
+"url": "http://www.w3schools.com/sql/default.asp"
+},
+{
+"display": "PHP Tutorial",
+"url": "http://www.w3schools.com/php/default.asp"
+},
+{
+"display": "XML Tutorial",
+"url": "http://www.w3schools.com/xml/default.asp"
+}
+];
+
+        } );
+</script>
+</body>
+
+</html>

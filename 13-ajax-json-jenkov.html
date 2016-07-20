@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+
+  <div ng-controller="MyController" >
+    <button ng-click="myData.doClick(item, $event)">Send AJAX Request</button>
+    <br/>
+    <div id="fromServer">Data from server: {{myData.fromServer}}</div>
+  </div>
+
+  <script>
+    angular.module("myapp", [])
+        .controller("MyController", function($scope, $http) {
+            $scope.myData = {};
+            $scope.myData.doClick = function(item, event) {
+
+                var responsePromise = $http.get("13-json-jenkov.json");
+
+                responsePromise.success(function(data, status, headers, config) {
+                    myFunction(data);
+
+                });
+                responsePromise.error(function(data, status, headers, config) {
+                    alert("AJAX failed!");
+                });
+            }
+
+            function myFunction(arr) {
+                var out = "";
+                var i;
+                for(i = 0; i < arr.length; i++) {
+                    out += '<a href="' + arr[i].url + '">' + 
+                    arr[i].display + '</a><br>';
+                }
+                $scope.myData.fromServer = out;
+                document.getElementById("fromServer").innerHTML = out;
+                //$scope.$digest();
+            }
+
+
+        } );
+  </script>
+
+</body>
+
+</html>
