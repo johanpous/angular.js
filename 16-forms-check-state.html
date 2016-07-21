@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <style>
+    .fieldValid {
+        border: 3px solid #00ff00;
+    }
+    .fieldInvalid {
+        border: 3px solid #ff0000;
+    }
+</style>
+</head>
+<body ng-app="myapp">
+
+<div ng-controller="MyController" >
+    <form name="myFormNg" >
+        <input type="text" ng-class="myForm.getFormFieldCssClass(myFormNg.name)"
+               id="name" name="name" ng-model="myForm.name" ng-minlength="2" required> Name <br/>
+        <input type="text" ng-model="myForm.edad" ng-class="myForm.getFormFieldCssClass(myFormNg.edad)" ng-minlength="3" name="edad" required>Edad</input>
+    </form>
+    {{myFormNg.$valid}}
+</div>
+
+<script>
+    angular.module("myapp", [])
+            .controller("MyController", function($scope) {
+                $scope.myForm = {};
+
+                $scope.myForm.getFormFieldCssClass = function(ngModelController) {
+                    //console.log("getting css class: " + ngModelController.$valid) ;
+                    if(ngModelController.$pristine) return "";
+                    return ngModelController.$valid ? "fieldValid" : "fieldInvalid";
+                }
+
+            } );
+</script>
+</body>
+</html>

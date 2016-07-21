@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myapp" ng-init="var2 = 0;">
+    <div ng-controller="MyController" >
+        <form>
+            <input ng-keydown="longitud()" type="text" id="name" ng-model="myForm.name" ng-minlength="5" ng-maxlength="12"> Name <br/>
+            <input type="text" id="numero" ng-model="myForm.numero" ng-pattern="/[a-z]+$/"> Name <br/>
+            <input ng-model="oblig" required type="text">Camp obligatori</input>
+        </form>
+
+        <div>
+            {{myForm.name}} - {{myForm.name.length}} - {{myForm.numero}} - {{oblig}}
+        </div>
+    </div>
+
+    <script>
+        angular.module("myapp", [])
+                .controller("MyController", function($scope) {
+                    $scope.myForm = {};
+                    $scope.myForm.name = "Jakob Jenkov";  
+
+                    $scope.longitud = function(){
+                        //$scope.var2 = $scope.myForm.name.length;
+                    }  
+
+                } );
+    </script>
+</body>
+
+</html>

@@ -9,8 +9,9 @@
 <body ng-app="myapp">
 <div ng-controller="MyController" >
     <form>
-        <select ng-model="myForm.car"
+        <select multiple="true" ng-model="myForm.car"
                 ng-options="obj.url as obj.display for obj in myForm.options">
+                <option value="">Please choose a tutorial:</option>
         </select>
     </form>
 
