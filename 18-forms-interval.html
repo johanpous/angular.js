@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<body class="w3-container">
+	<div ng-app="myapp" ng-controller="DIController">
+		{{variable}}-
+
+		<p> <span class="w3-badge w3-jumbo w3-padding-large w3-green">{{contador}}</span></p>
+	</div>
+
+	<script>
+		var myapp = angular.module("myapp", []);
+
+		myapp.controller("DIController", function($scope, $timeout, $interval){
+			$scope.contador = 0;
+		    $scope.callAtTimeout = function() {
+		        console.log("$scope.callAtTimeout - Timeout occurred");
+		    }
+
+		    $scope.callAtInterval = function() {
+		        console.log("$scope.callAtInterval - Interval occurred");
+		    }
+
+		    $interval( function(){ console.log("hola interval"); $scope.callAtInterval(); $scope.contador++;}, 3000, true);
+
+		    $timeout(function(){ $scope.callAtTimeout(); $scope.variable="hola" }, 3000);
+		});
+	</script>
+</body>
+</html>

@@ -43,6 +43,7 @@
        var responsePromise = $http.post("json.php", dataObject, {});
        responsePromise.success(function(dataFromServer, status, headers, config) {
           console.log(dataFromServer.name);
+          $scope.myForm.name = dataFromServer.name;
        });
         responsePromise.error(function(data, status, headers, config) {
           alert("Submitting form failed!");
