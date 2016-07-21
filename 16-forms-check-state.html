@@ -18,8 +18,14 @@
         <input type="text" ng-class="myForm.getFormFieldCssClass(myFormNg.name)"
                id="name" name="name" ng-model="myForm.name" ng-minlength="2" required> Name <br/>
         <input type="text" ng-model="myForm.edad" ng-class="myForm.getFormFieldCssClass(myFormNg.edad)" ng-minlength="3" name="edad" required>Edad</input>
+        <!--
+        <input type="submit" ng-disabled="myFormNg.$invalid">
+        -->
+        <div ng-hide="myFormNg.$invalid">
+            <input type="submit">
+        </div>
     </form>
-    {{myFormNg.$valid}}
+    
 </div>
 
 <script>
@@ -32,6 +38,7 @@
                     if(ngModelController.$pristine) return "";
                     return ngModelController.$valid ? "fieldValid" : "fieldInvalid";
                 }
+
 
             } );
 </script>
